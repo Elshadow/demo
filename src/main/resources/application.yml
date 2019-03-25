@@ -1,0 +1,6 @@
+spring:
+    profiles:
+        active: ${spring.profiles.active}
+
+test.name: ${name}
+test.environment: ${environment}

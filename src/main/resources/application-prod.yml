@@ -1,0 +1,7 @@
+spring:
+    profiles: prod
+name: prod-YAML
+environment: production
+servers: 
+    - www.abc.com
+    - www.xyz.com
