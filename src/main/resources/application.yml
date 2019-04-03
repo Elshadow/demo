@@ -1,6 +1,10 @@
 spring:
     profiles:
         active: ${spring.profiles.active}
+    mvc:
+        view:
+            prefix: /WEB-INF/views/
+            suffix: .jsp
 
 test.name: ${name}
 test.environment: ${environment}
