@@ -70,6 +70,18 @@ public class HelloWorldController {
 	}
 
 	/**
+	 * 如果有定义servlet的URL请求路径与当前请求路径一致的话
+	 * 响应的是servlet中的doGet方法
+	 * @param str
+	 * @return
+	 */
+	@RequestMapping(value = "/servlet/sample", method = RequestMethod.GET)
+	@ResponseBody
+	public String testservlet(@RequestParam(value = "sid", required = true, defaultValue = "empty string") String str) {
+		return "testservlet + " + str;
+	}
+
+	/**
 	 * Get请求，传递url路径参数，返回json
 	 */
 	@RequestMapping(value = "/testpathvariable/{content}", method = RequestMethod.GET)

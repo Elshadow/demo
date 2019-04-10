@@ -7,19 +7,21 @@ import com.example.demo.vo.Echo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@ServletComponentScan
 public class DemoApplication {
 
 	public static void main(String[] args) {
 		// System.out.println("fuck you");
 		SpringApplication.run(DemoApplication.class, args);
-		int[] arr = { 1, 2, 3, 4, 5 };
-		System.out.println(arr[0]);
-		change(arr);
-		System.out.println(arr[0]);
+		// int[] arr = { 1, 2, 3, 4, 5 };
+		// System.out.println(arr[0]);
+		// change(arr);
+		// System.out.println(arr[0]);
 		// Echo s1 = new Echo(1, "小张");
 		// Echo s2 = new Echo(2, "小李");
 		// swap(s1, s2);
