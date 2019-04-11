@@ -1,6 +1,10 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import com.example.demo.vo.Echo;
 
@@ -27,6 +31,14 @@ public class DemoApplication {
 		// swap(s1, s2);
 		// System.out.println("s1:" + s1.getContent() + System.identityHashCode(s1));
 		// System.out.println("s2:" + s2.getContent() + System.identityHashCode(s2));
+		// System.out.println("meta number is " + findMetaNumber(9, 1));
+		List<String> list = new ArrayList<String>();
+		list.add("a");
+		list.add("b");
+		for (int i = 0; i < list.size(); i++) {
+			String str = (String) list.get(i);
+			System.out.println("output str " + str);
+		}
 	}
 
 	public static void change(int[] array) {
@@ -41,6 +53,48 @@ public class DemoApplication {
 		System.out.println("x:" + x.getContent() + System.identityHashCode(x));
 		System.out.println("y:" + y.getContent() + System.identityHashCode(y));
 	}
+
+	/**
+	 * 假设初始水果初始数目为1个，每次操作后数目变为原来的2n+2个个数
+	 * 递归返回执行特定次数后拥有的水果数目
+	 * @param cnt 运算次数
+	 * @param initValue 初始值
+	 * @return 执行结果
+	 */
+	public static int findMetaNumber(int cnt, int initValue) {
+		if (cnt == 0) {
+			return initValue;
+		} else {
+			return findMetaNumber(cnt - 1, 2 * initValue + 2);
+		}
+	}
+
+	/**
+	 * 高效算法取字符串中第一次出现重复字符的字符
+	 * @return 执行结果
+	 */
+	public static char findFirstMatchChar(String str) {
+		if (str == null || str.isBlank()) {
+			return '~';
+		}
+		// 遍历所有字符，存储至HashMap中
+		HashMap<String, Boolean> map = new HashMap<>();
+		char[] charArray = str.toCharArray();
+		for (char c : charArray) {
+			map.put(String.valueOf(c), true);
+		}
+		for (String key : map.keySet()) {
+			int cnt = 0;
+			for (char c : charArray) {
+				if (String.valueOf(c).equals(key)) {
+					cnt++;
+					if (cnt == 2) return c;
+				}
+			}
+		}
+		return '~';
+	}
+
 
 	// @Bean
     // public CommandLineRunner commandLineRunner(ApplicationContext ctx) {

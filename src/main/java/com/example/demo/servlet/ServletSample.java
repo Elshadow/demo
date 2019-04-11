@@ -1,5 +1,6 @@
 package com.example.demo.servlet;
 
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -38,9 +39,25 @@ public class ServletSample extends HttpServlet {
                 System.out.println("request param value is " + entry.getValue()[0]);
             }
         }
-        
+
         System.out.println("handle doGet request");
         System.out.println("*********doGet*********");
+
+        rep.setContentType("text/html");
+        rep.setHeader("refresh", "5");
+        try {
+            PrintWriter out = rep.getWriter();
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Hello World</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>welcome this is my servlet!!!Page Refresh after 5s</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
     }
 
     @Override
@@ -57,7 +74,7 @@ public class ServletSample extends HttpServlet {
                 System.out.println("request param value is " + entry.getValue()[0]);
             }
         }
-        
+
         System.out.println("handle doPost request");
         System.out.println("*********doPost*********");
     }
@@ -67,5 +84,5 @@ public class ServletSample extends HttpServlet {
         super.destroy();
         System.out.println("servlet is destroy");
     }
-    
+
 }
