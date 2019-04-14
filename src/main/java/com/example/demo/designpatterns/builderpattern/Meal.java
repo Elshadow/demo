@@ -1,0 +1,32 @@
+package com.example.demo.designpatterns.builderpattern;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.demo.designpatterns.builderpattern.interfaces.Item;
+
+public class Meal {
+
+    private List<Item> items = new ArrayList<Item>();
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public float getCost() {
+        float costs = 0.0f;
+        for (Item item : items) {
+            costs += item.price();
+        }
+        return costs;
+    }
+
+    public void showItems(){
+        for (Item item : items) {
+           System.out.print("Item : " + item.name());
+           System.out.print(", Packing : " + item.packing().pack());
+           System.out.println(", Price : " + item.price());
+        }
+    }
+
+}

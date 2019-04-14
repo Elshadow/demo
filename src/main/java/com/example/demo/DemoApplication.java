@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import com.example.demo.designpatterns.builderpattern.Meal;
+import com.example.demo.designpatterns.builderpattern.MealBuilder;
 import com.example.demo.vo.Echo;
 
 import org.springframework.boot.CommandLineRunner;
@@ -32,13 +34,24 @@ public class DemoApplication {
 		// System.out.println("s1:" + s1.getContent() + System.identityHashCode(s1));
 		// System.out.println("s2:" + s2.getContent() + System.identityHashCode(s2));
 		// System.out.println("meta number is " + findMetaNumber(9, 1));
-		List<String> list = new ArrayList<String>();
-		list.add("a");
-		list.add("b");
-		for (int i = 0; i < list.size(); i++) {
-			String str = (String) list.get(i);
-			System.out.println("output str " + str);
-		}
+		// List<String> list = new ArrayList<String>();
+		// list.add("a");
+		// list.add("b");
+		// for (int i = 0; i < list.size(); i++) {
+		// 	String str = (String) list.get(i);
+		// 	System.out.println("output str " + str);
+		// }
+		// MealBuilder mBuilder = MealBuilder.getInstance();
+
+		Meal vegMeal = MealBuilder.INSTANCE.prepareVegMeal();
+		System.out.println("Veg Meal");
+      	vegMeal.showItems();
+		System.out.println("Total Cost: " + vegMeal.getCost());
+
+		Meal nonVegMeal = MealBuilder.INSTANCE.prepareChickenMeal();
+		System.out.println("\n\nChicken Meal");
+		nonVegMeal.showItems();
+		System.out.println("Total Cost: " + nonVegMeal.getCost());
 	}
 
 	public static void change(int[] array) {
