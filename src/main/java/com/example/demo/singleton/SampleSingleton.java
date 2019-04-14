@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.singleton;
 
 /**
  * 双重校验锁-单例模式
