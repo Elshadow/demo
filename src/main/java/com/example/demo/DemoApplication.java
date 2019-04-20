@@ -92,7 +92,7 @@ public class DemoApplication {
 	 * @return 执行结果
 	 */
 	public static char findFirstMatchChar(String str) {
-		if (str == null || str.isBlank()) {
+		if (str == null || str.isEmpty()) {
 			return '~';
 		}
 		// 遍历所有字符，存储至HashMap中
