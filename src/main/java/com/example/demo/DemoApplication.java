@@ -3,8 +3,11 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
+import java.util.Vector;
 
 import com.example.demo.designpatterns.builderpattern.Meal;
 import com.example.demo.designpatterns.builderpattern.MealBuilder;
@@ -43,15 +46,17 @@ public class DemoApplication {
 		// }
 		// MealBuilder mBuilder = MealBuilder.getInstance();
 
-		Meal vegMeal = MealBuilder.INSTANCE.prepareVegMeal();
-		System.out.println("Veg Meal");
-      	vegMeal.showItems();
-		System.out.println("Total Cost: " + vegMeal.getCost());
+		// Meal vegMeal = MealBuilder.INSTANCE.prepareVegMeal();
+		// System.out.println("Veg Meal");
+      	// vegMeal.showItems();
+		// System.out.println("Total Cost: " + vegMeal.getCost());
 
-		Meal nonVegMeal = MealBuilder.INSTANCE.prepareChickenMeal();
-		System.out.println("\n\nChicken Meal");
-		nonVegMeal.showItems();
-		System.out.println("Total Cost: " + nonVegMeal.getCost());
+		// Meal nonVegMeal = MealBuilder.INSTANCE.prepareChickenMeal();
+		// System.out.println("\n\nChicken Meal");
+		// nonVegMeal.showItems();
+		// System.out.println("Total Cost: " + nonVegMeal.getCost());
+
+		// System.out.println(reverse("abc"));
 	}
 
 	public static void change(int[] array) {
@@ -108,6 +113,19 @@ public class DemoApplication {
 		return '~';
 	}
 
+	public static String reverse(String str) {
+		StringBuffer sb = new StringBuffer();
+		if (str != null && !str.isEmpty()) {
+			char[] charArray = str.toCharArray();
+			for (int i = charArray.length - 1; i >= 0; --i) {
+				// System.out.println("char index " + i);
+				sb.append(charArray[i]);
+			}
+		} else {
+			return null;
+		}
+		return sb.toString();
+	}
 
 	// @Bean
     // public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
