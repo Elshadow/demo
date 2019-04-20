@@ -3,11 +3,7 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
-import java.util.Vector;
 
 import com.example.demo.designpatterns.builderpattern.Meal;
 import com.example.demo.designpatterns.builderpattern.MealBuilder;
@@ -27,36 +23,36 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		// System.out.println("fuck you");
 		SpringApplication.run(DemoApplication.class, args);
-		// int[] arr = { 1, 2, 3, 4, 5 };
-		// System.out.println(arr[0]);
-		// change(arr);
-		// System.out.println(arr[0]);
-		// Echo s1 = new Echo(1, "小张");
-		// Echo s2 = new Echo(2, "小李");
-		// swap(s1, s2);
-		// System.out.println("s1:" + s1.getContent() + System.identityHashCode(s1));
-		// System.out.println("s2:" + s2.getContent() + System.identityHashCode(s2));
-		// System.out.println("meta number is " + findMetaNumber(9, 1));
-		// List<String> list = new ArrayList<String>();
-		// list.add("a");
-		// list.add("b");
-		// for (int i = 0; i < list.size(); i++) {
-		// 	String str = (String) list.get(i);
-		// 	System.out.println("output str " + str);
-		// }
+		int[] arr = { 1, 2, 3, 4, 5 };
+		System.out.println(arr[0]);
+		change(arr);
+		System.out.println(arr[0]);
+		Echo s1 = new Echo(1, "小张");
+		Echo s2 = new Echo(2, "小李");
+		swap(s1, s2);
+		System.out.println("s1:" + s1.getContent() + System.identityHashCode(s1));
+		System.out.println("s2:" + s2.getContent() + System.identityHashCode(s2));
+		System.out.println("meta number is " + findMetaNumber(9, 1));
+		List<String> list = new ArrayList<String>();
+		list.add("a");
+		list.add("b");
+		for (int i = 0; i < list.size(); i++) {
+			String str = (String) list.get(i);
+			System.out.println("output str " + str);
+		}
 		// MealBuilder mBuilder = MealBuilder.getInstance();
 
-		// Meal vegMeal = MealBuilder.INSTANCE.prepareVegMeal();
-		// System.out.println("Veg Meal");
-      	// vegMeal.showItems();
-		// System.out.println("Total Cost: " + vegMeal.getCost());
+		Meal vegMeal = MealBuilder.INSTANCE.prepareVegMeal();
+		System.out.println("Veg Meal");
+      	vegMeal.showItems();
+		System.out.println("Total Cost: " + vegMeal.getCost());
 
-		// Meal nonVegMeal = MealBuilder.INSTANCE.prepareChickenMeal();
-		// System.out.println("\n\nChicken Meal");
-		// nonVegMeal.showItems();
-		// System.out.println("Total Cost: " + nonVegMeal.getCost());
+		Meal nonVegMeal = MealBuilder.INSTANCE.prepareChickenMeal();
+		System.out.println("\n\nChicken Meal");
+		nonVegMeal.showItems();
+		System.out.println("Total Cost: " + nonVegMeal.getCost());
 
-		// System.out.println(reverse("abc"));
+		System.out.println(reverse("abc"));
 	}
 
 	public static void change(int[] array) {
@@ -127,19 +123,19 @@ public class DemoApplication {
 		return sb.toString();
 	}
 
-	// @Bean
-    // public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-    //     return args -> {
+	@Bean
+    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+        return args -> {
 
-    //         System.out.println("Let's inspect the beans provided by Spring Boot:");
+            System.out.println("Let's inspect the beans provided by Spring Boot:");
 
-    //         String[] beanNames = ctx.getBeanDefinitionNames();
-    //         Arrays.sort(beanNames);
-    //         for (String beanName : beanNames) {
-    //             System.out.println(beanName);
-    //         }
+            String[] beanNames = ctx.getBeanDefinitionNames();
+            Arrays.sort(beanNames);
+            for (String beanName : beanNames) {
+                System.out.println(beanName);
+            }
 
-    //     };
-    // }
+        };
+    }
 
 }

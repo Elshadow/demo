@@ -29,11 +29,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HelloWorldController {
 
-	// @Autowired
-	// private Config config;
+	@Autowired
+	private Config config;
 
-	// @Autowired
-	// private Customize customize;
+	@Autowired
+	private Customize customize;
 
 	@Autowired
 	CountryLanguageMapper countryLanguageMapper;
@@ -45,6 +45,8 @@ public class HelloWorldController {
 	@RequestMapping("/")
 	public String index(Model m) {
 		m.addAttribute("now", DateFormat.getDateTimeInstance().format(new Date()));
+		m.addAttribute("name", config.getName());
+		m.addAttribute("environment", config.getEnvironment());
 		return "hello";
 		// return "hello world, welcome to spring boot with properties " +
 		// config.getName() + " " + config.getEnvironment() + " " +
@@ -55,6 +57,8 @@ public class HelloWorldController {
 	public String customize(Model m) {
 		List<CountryLanguage> list = countryLanguageMapper.find10Records();
 		m.addAttribute("cl", list);
+		m.addAttribute("name", customize.getName());
+		m.addAttribute("number", customize.getNumber());
 		return "countrylanguage";
 		// return "show properties " + customize.getName() + " " +
 		// customize.getNumber();
@@ -66,7 +70,7 @@ public class HelloWorldController {
 	@RequestMapping(value = "/testget", method = RequestMethod.GET)
 	@ResponseBody
 	public String testget(@RequestParam(value = "content", required = true, defaultValue = "empty string") String str) {
-		return "testget + " + str;
+		return "testget + " + String.format(echoTemplate1, str);
 	}
 
 	/**
