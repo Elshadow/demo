@@ -55,6 +55,7 @@ public class ServletSample extends HttpServlet {
             out.println("<h1>welcome this is my servlet!!!Page Refresh after 5s</h1>");
             out.println("</body>");
             out.println("</html>");
+            out.flush();
         } catch (Exception e) {
             //TODO: handle exception
         }

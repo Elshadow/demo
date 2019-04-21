@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.example.demo.entity.Config;
 import com.example.demo.entity.Customize;
 import com.example.demo.mapper.CountryLanguageMapper;
@@ -15,6 +19,7 @@ import com.example.demo.vo.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,10 +48,12 @@ public class HelloWorldController {
 	private final AtomicLong counter = new AtomicLong();
 
 	@RequestMapping("/")
-	public String index(Model m) {
+	public String index(Model m, HttpSession session, HttpServletResponse response, @CookieValue(value = "sid", required = true, defaultValue = "123456") String sid) {
 		m.addAttribute("now", DateFormat.getDateTimeInstance().format(new Date()));
 		m.addAttribute("name", config.getName());
 		m.addAttribute("environment", config.getEnvironment());
+		m.addAttribute("sessionId", session.getId());
+		response.addCookie(new Cookie("sid", sid));
 		return "hello";
 		// return "hello world, welcome to spring boot with properties " +
 		// config.getName() + " " + config.getEnvironment() + " " +

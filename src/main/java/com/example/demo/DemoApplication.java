@@ -3,10 +3,14 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.FutureTask;
 
 import com.example.demo.designpatterns.builderpattern.Meal;
 import com.example.demo.designpatterns.builderpattern.MealBuilder;
+import com.example.demo.threads.CallableThread;
+import com.example.demo.threads.RunnableThread;
 import com.example.demo.vo.Echo;
 
 import org.springframework.boot.CommandLineRunner;
@@ -53,6 +57,22 @@ public class DemoApplication {
 		System.out.println("Total Cost: " + nonVegMeal.getCost());
 
 		System.out.println(reverse("abc"));
+
+		new Thread(() -> {
+			LinkedList<String> linkList = new LinkedList<String>();
+			linkList.add("element 1");
+			linkList.add("element 2");
+			System.out.println("this a new thread " + linkList.get(1));
+		}, "CommonThread").start();
+
+		RunnableThread runnableThread =  new RunnableThread();
+		new Thread(runnableThread, "RunnableThread1").start();
+
+		CallableThread callableThread = new CallableThread();
+		FutureTask<String> task = new FutureTask<>(callableThread);
+		new Thread(task, "CallableThread").start();
+
+		System.out.println("current thread is " + Thread.currentThread().getName());
 	}
 
 	public static void change(int[] array) {
