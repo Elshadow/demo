@@ -8,8 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.FutureTask;
 
 import com.example.demo.designpatterns.builderpattern.Meal;
@@ -172,6 +175,29 @@ public class DemoApplication {
 			return null;
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * 遍历HashMap的几种方式
+	 */
+	public static void traverseHashMap () {
+		HashMap<String, Object> map = new HashMap<>();
+		// 使用迭代器的方式是效率最高的
+        Iterator<Map.Entry<String, Object>> entries = map.entrySet().iterator();
+        while (entries.hasNext()) {
+            Entry<String, Object> entry = entries.next();
+            String key = entry.getKey();
+            Object object = entry.getValue();
+		}
+
+		for (String key : map.keySet()) {
+			map.get(key);
+		}
+
+        for (Entry<String, Object> entry : map.entrySet()) {
+            entry.getKey();
+            entry.getValue();
+        }
 	}
 
 	@Bean
