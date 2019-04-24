@@ -1,5 +1,10 @@
 package com.example.demo;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -73,6 +78,32 @@ public class DemoApplication {
 		new Thread(task, "CallableThread").start();
 
 		System.out.println("current thread is " + Thread.currentThread().getName());
+
+		try {
+			System.out.println("fuck a");
+			File f = new File("test.txt");
+ 			System.out.println(f.getAbsolutePath());
+			FileReader fileReader = new FileReader("resources/.txt");
+			System.out.println("fuck b");
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			LinkedList<Integer> lines = new LinkedList<>();
+			String currentLine;
+			int lineNumber = 1;
+			while ((currentLine = bufferedReader.readLine()) != null) {
+				if ("abc".equals(currentLine)) {
+					lines.add(Integer.valueOf(lineNumber));
+				}
+				lineNumber++;
+			}
+			bufferedReader.close();
+			System.out.println("match key lines is " + lines.toString());
+		} catch (FileNotFoundException ioe) {
+			//TODO: handle file not found exception
+			System.out.println("target file not found");
+		} catch (IOException e) {
+			//TODO: handle exception
+			System.out.println("thoow io exception");
+		}
 	}
 
 	public static void change(int[] array) {
