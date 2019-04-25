@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 import java.util.concurrent.FutureTask;
 
@@ -81,6 +83,26 @@ public class DemoApplication {
 		new Thread(task, "CallableThread").start();
 
 		System.out.println("current thread is " + Thread.currentThread().getName());
+
+		System.out.println("1 has repeat value " + hasRepeatValue(new int[]{1, 2, 3, 4}));
+
+		System.out.println("2 has repeat value " + hasRepeatValue(new int[]{1, 2, 3, 1}));
+
+		Integer i1 = Integer.valueOf(1);
+		Integer i2 = Integer.valueOf(1);
+		Integer i3 = new Integer(1);
+		Integer i4 = new Integer(2);
+		Integer i5 = new Integer(2);
+		System.out.println("1 dose two integer value equal " + (i1 == i2)); // true
+		System.out.println("2 dose two integer value equal " + (i1 == i3)); // false
+		System.out.println("3 dose two integer value equal " + (i4 == i5)); // false
+
+		List<Integer> li = new ArrayList<Integer>();
+		li.add(1);
+		li.add(2);
+		li.add(3);
+		li.add(4);
+		System.out.println("list tostring return " + li);
 
 		try {
 			System.out.println("fuck a");
@@ -198,6 +220,18 @@ public class DemoApplication {
             entry.getKey();
             entry.getValue();
         }
+	}
+
+	public static boolean hasRepeatValue (int[] array) {
+		Set<Integer> set = new HashSet<Integer>();
+		for (int var : array) {
+			set.add(Integer.valueOf(var));
+		}
+		if (set.size() != array.length) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Bean
