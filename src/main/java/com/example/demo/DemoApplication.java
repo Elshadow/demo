@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 import com.example.demo.designpatterns.builderpattern.Meal;
@@ -88,6 +90,20 @@ public class DemoApplication {
 
 		System.out.println("2 has repeat value " + hasRepeatValue(new int[]{1, 2, 3, 1}));
 
+		// 线程池方式创建线程
+		int processorsCnt = Runtime.getRuntime().availableProcessors(); // 获取当前设备的处理器核心数
+		final int THREAD_NUMBER = processorsCnt * 2;
+		ExecutorService service = Executors.newFixedThreadPool(THREAD_NUMBER); // 潜规则开线程的数目为核心数的2倍
+		for (int i = 0; i < THREAD_NUMBER; i++) {
+			final int num = i;
+			service.execute(new Runnable(){
+				@Override
+				public void run() {
+					System.out.println("thread [" + num + "] which is created by thread pool");
+				}
+			});
+		}
+
 		Integer i1 = Integer.valueOf(1);
 		Integer i2 = Integer.valueOf(1);
 		Integer i3 = new Integer(1);
@@ -107,8 +123,8 @@ public class DemoApplication {
 		try {
 			System.out.println("fuck a");
 			File f = new File("test.txt");
- 			System.out.println(f.getAbsolutePath());
-			FileReader fileReader = new FileReader("resources/.txt");
+			System.out.println(f.getAbsolutePath() + " dose exist " + f.exists());
+			FileReader fileReader = new FileReader("resources/test.txt");
 			System.out.println("fuck b");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			LinkedList<Integer> lines = new LinkedList<>();
