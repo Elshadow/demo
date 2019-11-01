@@ -99,7 +99,7 @@ public class DemoApplication {
 			service.execute(new Runnable(){
 				@Override
 				public void run() {
-					System.out.println("thread [" + num + "] which is created by thread pool");
+					System.out.println("info : thread [" + num + "] which is created by thread pool");
 				}
 			});
 		}
